@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+
+.hero {
+  background: linear-gradient(135deg, #ff6f3f, #ff8f5e);
+  padding: 70px 0 120px;
+}
+
+.hero h1 {
+  text-align: center;
+  color: white;
+  font-size: 34px;
+  margin-bottom: 40px;
+}

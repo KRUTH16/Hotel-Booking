@@ -1,0 +1,208 @@
+import type { Room } from '../types/room'
+
+ const rooms: Room[] = [
+  // ================= BENGALURU =================
+  {
+    id: 101,
+    hotelName: 'The Grand Orchid',
+    location: 'Bengaluru',
+    name: 'Deluxe Room',
+    capacity: 2,
+    basePrice: 2600,
+    unavailableDates: ['2025-12-20', '2025-12-21'],
+  },
+  {
+    id: 102,
+    hotelName: 'The Grand Orchid',
+    location: 'Bengaluru',
+    name: 'Premium Room',
+    capacity: 3,
+    basePrice: 3400,
+    unavailableDates: ['2025-12-22'],
+  },
+  {
+    id: 103,
+    hotelName: 'The Grand Orchid',
+    location: 'Bengaluru',
+    name: 'Family Suite',
+    capacity: 4,
+    basePrice: 4800,
+    unavailableDates: [],
+  },
+
+  {
+    id: 104,
+    hotelName: 'Urban Nest',
+    location: 'Bengaluru',
+    name: 'Deluxe Room',
+    capacity: 2,
+    basePrice: 2400,
+    unavailableDates: ['2025-12-18'],
+  },
+  {
+    id: 105,
+    hotelName: 'Urban Nest',
+    location: 'Bengaluru',
+    name: 'Executive Room',
+    capacity: 3,
+    basePrice: 3200,
+    unavailableDates: [],
+  },
+
+  // ================= MUMBAI =================
+  {
+    id: 201,
+    hotelName: 'Sea View Residency',
+    location: 'Mumbai',
+    name: 'Deluxe Sea View',
+    capacity: 2,
+    basePrice: 4200,
+    unavailableDates: ['2025-12-24', '2025-12-25'],
+  },
+  {
+    id: 202,
+    hotelName: 'Sea View Residency',
+    location: 'Mumbai',
+    name: 'Premium Sea View',
+    capacity: 3,
+    basePrice: 5200,
+    unavailableDates: [],
+  },
+
+  {
+    id: 203,
+    hotelName: 'City Palace Hotel',
+    location: 'Mumbai',
+    name: 'Standard Room',
+    capacity: 2,
+    basePrice: 3000,
+    unavailableDates: ['2025-12-19'],
+  },
+  {
+    id: 204,
+    hotelName: 'City Palace Hotel',
+    location: 'Mumbai',
+    name: 'Family Suite',
+    capacity: 4,
+    basePrice: 6000,
+    unavailableDates: [],
+  },
+
+  // ================= DELHI =================
+  {
+    id: 301,
+    hotelName: 'Royal Heritage',
+    location: 'Delhi',
+    name: 'Deluxe Room',
+    capacity: 2,
+    basePrice: 2800,
+    unavailableDates: [],
+  },
+  {
+    id: 302,
+    hotelName: 'Royal Heritage',
+    location: 'Delhi',
+    name: 'Premium Room',
+    capacity: 3,
+    basePrice: 3600,
+    unavailableDates: ['2025-12-20'],
+  },
+
+  {
+    id: 303,
+    hotelName: 'Capital Inn',
+    location: 'Delhi',
+    name: 'Executive Room',
+    capacity: 3,
+    basePrice: 3900,
+    unavailableDates: [],
+  },
+  {
+    id: 304,
+    hotelName: 'Capital Inn',
+    location: 'Delhi',
+    name: 'Family Suite',
+    capacity: 4,
+    basePrice: 5200,
+    unavailableDates: ['2025-12-21'],
+  },
+
+  // ================= GOA =================
+  {
+    id: 401,
+    hotelName: 'Palm Breeze Resort',
+    location: 'Goa',
+    name: 'Beach View Room',
+    capacity: 2,
+    basePrice: 4500,
+    unavailableDates: ['2025-12-24'],
+  },
+  {
+    id: 402,
+    hotelName: 'Palm Breeze Resort',
+    location: 'Goa',
+    name: 'Luxury Villa',
+    capacity: 4,
+    basePrice: 8000,
+    unavailableDates: [],
+  },
+
+  {
+    id: 403,
+    hotelName: 'Sunset Bay Hotel',
+    location: 'Goa',
+    name: 'Deluxe Room',
+    capacity: 2,
+    basePrice: 3800,
+    unavailableDates: [],
+  },
+  {
+    id: 404,
+    hotelName: 'Sunset Bay Hotel',
+    location: 'Goa',
+    name: 'Family Suite',
+    capacity: 4,
+    basePrice: 6200,
+    unavailableDates: ['2025-12-22'],
+  },
+
+  // ================= CHENNAI =================
+  {
+    id: 501,
+    hotelName: 'Coastal Comfort',
+    location: 'Chennai',
+    name: 'Standard Room',
+    capacity: 2,
+    basePrice: 2300,
+    unavailableDates: [],
+  },
+  {
+    id: 502,
+    hotelName: 'Coastal Comfort',
+    location: 'Chennai',
+    name: 'Executive Room',
+    capacity: 3,
+    basePrice: 3100,
+    unavailableDates: ['2025-12-19'],
+  },
+
+  {
+    id: 503,
+    hotelName: 'Marina View',
+    location: 'Chennai',
+    name: 'Sea View Room',
+    capacity: 2,
+    basePrice: 3600,
+    unavailableDates: [],
+  },
+  {
+    id: 504,
+    hotelName: 'Marina View',
+    location: 'Chennai',
+    name: 'Family Suite',
+    capacity: 4,
+    basePrice: 5500,
+    unavailableDates: [],
+  },
+]
+export default rooms

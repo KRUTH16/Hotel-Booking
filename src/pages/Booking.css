@@ -1,0 +1,31 @@
+.results-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(90deg, #f36f21, #f7921e);
+  color: white;
+  border-radius: 12px;
+}
+
+.search-item {
+  background: white;
+  color: #000;
+  padding: 10px 14px;
+  border-radius: 8px;
+  min-width: 160px;
+}
+
+.search-item .label {
+  font-size: 12px;
+  color: #666;
+}
+
+.update-search-btn {
+  margin-left: auto;
+  background: white;
+  color: #2f6ce5;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+}
