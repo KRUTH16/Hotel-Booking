@@ -4,9 +4,11 @@ import './BookingGrid.css'
 
 type Props = {
   rooms: Room[]
-  selectedRooms: number[]
-  setSelectedRooms: React.Dispatch<React.SetStateAction<number[]>>
+  selectedRooms: string[]
+  setSelectedRooms: React.Dispatch<React.SetStateAction<string[]>>
   maxRooms: number
+   checkIn: string
+  checkOut: string
 }
 
 export default function BookingGrid({
@@ -14,8 +16,12 @@ export default function BookingGrid({
   selectedRooms,
   setSelectedRooms,
   maxRooms,
+   checkIn,
+  checkOut
+
 }: Props) {
-  const toggle = (id: number) => {
+
+  const toggle = (id: string) => {
     setSelectedRooms(prev =>
       prev.includes(id)
         ? prev.filter(x => x !== id)
@@ -31,6 +37,8 @@ export default function BookingGrid({
         <RoomCard
           key={room.id}
           room={room}
+           checkIn={checkIn}
+  checkOut={checkOut}
           selected={selectedRooms.includes(room.id)}
           disabled={
             !selectedRooms.includes(room.id) &&

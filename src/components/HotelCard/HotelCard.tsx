@@ -1,5 +1,7 @@
 import './HotelCard.css'
 import { useNavigate } from 'react-router-dom'
+import type { Hotel } from '../../types/hotel'
+
 
 type Guests = {
   adults: number
@@ -7,18 +9,28 @@ type Guests = {
   rooms: number
 }
 
+// type Props = {
+//   hotel: {
+//     id: string
+//     hotelName: string
+//     rating: string
+//     image?: string
+//     price: number
+//   }
+//   guests: Guests
+//   checkIn: string
+//   checkOut: string
+// }
+
+
+
 type Props = {
-  hotel: {
-    id: string
-    hotelName: string
-    rating: string
-    image?: string
-    price: number
-  }
+  hotel: Hotel
   guests: Guests
   checkIn: string
   checkOut: string
 }
+
 
 function calculateNights(checkIn: string, checkOut: string): number {
   const inDate = new Date(checkIn)
@@ -85,20 +97,14 @@ export default function HotelCard({
           Total: <strong>₹{totalPrice}</strong>
         </div>
 
-        {/* <button className="book-btn">
-          Book Now
-        </button> */}
-        {/* <button className="book-btn" onClick={onSelect}>
-  Select Rooms
-</button> */}
-
-<button
-  className="book-btn"
+    <button
+  className="select-rooms-btn"
   onClick={() =>
     navigate('/rooms', {
       state: {
-        hotel,
-        
+        hotelId: hotel.id,
+        hotelName: hotel.hotelName,
+        location: hotel.location,
         checkIn,
         checkOut,
         guests,
@@ -108,6 +114,7 @@ export default function HotelCard({
 >
   Select Rooms
 </button>
+
 
 
       </div>

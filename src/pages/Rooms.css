@@ -1,0 +1,49 @@
+.rooms-footer {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 16px 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.rooms-summary {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.continue-btn {
+  background: #2563eb;
+  color: white;
+  padding: 14px 26px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.continue-btn:hover {
+  background: #83af1e;
+}
+
+.room-card.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  position: relative;
+}
+
+.room-card.disabled::after {
+  content: 'Booked';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #dc2626;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}

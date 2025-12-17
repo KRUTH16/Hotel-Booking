@@ -1,6 +1,6 @@
-:root {
-  --primary: #ff6f3f;
-  --primary-dark: #e65a2e;
+ :root {
+  --primary: #efff3f;
+  --primary-dark: #2ee6e0;
 
   --text-dark: #1f2937;
   --text-light: #6b7280;
@@ -15,4 +15,8 @@
 
   --shadow-sm: 0 4px 10px rgba(0,0,0,0.08);
   --shadow-lg: 0 12px 32px rgba(0,0,0,0.15);
-}
+} 
+
+
+
+

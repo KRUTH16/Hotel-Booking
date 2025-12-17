@@ -58,6 +58,27 @@
   color: #666;
 }
 
+.select-rooms-btn {
+  background: #946bed;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.select-rooms-btn:hover {
+  background: #94ddcd;
+}
+
+.select-rooms-btn:active {
+  transform: scale(0.97);
+}
+
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
   .hotel-card {

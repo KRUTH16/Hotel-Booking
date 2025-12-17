@@ -1,8 +1,9 @@
-export type Hotel = {
+export interface Hotel {
   id: string
   hotelName: string
   location: string
   rating: string
   image?: string
   price: number
+  
 }
