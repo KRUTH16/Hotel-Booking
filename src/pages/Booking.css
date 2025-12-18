@@ -1,4 +1,4 @@
-.results-search-bar {
+ .results-search-bar {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -28,4 +28,23 @@
   padding: 10px 16px;
   border-radius: 20px;
   font-weight: 600;
+}
+
+
+
+ 
+
+/* ===== PAGE TITLE ===== */
+.results-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color:bisque;
+}
+
+
+.container p {
+  font-size: 16px;
+  color:black;
 }

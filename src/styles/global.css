@@ -9,7 +9,7 @@
 :root {
   --text-light: #59c27892;
   --text-dark: #35371f;
-  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-bg: rgba(142, 184, 90, 0.208);
   --glass-border: rgba(255, 255, 255, 0.4);
   --primary: #2563eb;
 }
@@ -53,7 +53,7 @@ body {
   font-size: 36px;
   font-weight: 700;
   letter-spacing: 0.4px;
-  margin-bottom: 48px;
+  margin-bottom: 30px;
   text-shadow: 0 4px 12px rgba(227, 27, 44, 0.4);
 }
 
@@ -99,7 +99,7 @@ button:hover {
 /* Primary CTA button (SEARCH) */
 .primary-btn,
 .search-btn {
-  background: var(--primary);
+  background:#93c739a5 ;
   color: white;
   padding: 14px 28px;
   border-radius: 999px;
@@ -108,7 +108,7 @@ button:hover {
 
 .primary-btn:hover,
 .search-btn:hover {
-  background: #1d4ed8;
+  background: #1bba1b88;
 }
 
 /* ================= SCROLLBAR (OPTIONAL NICE TOUCH) ================= */

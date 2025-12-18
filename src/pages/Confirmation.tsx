@@ -1,3 +1,5 @@
+
+
 // import { useLocation } from 'react-router-dom'
 // import './Confirmation.css'
 // import { saveRoomBooking } from '../utils/bookings'
@@ -15,8 +17,6 @@
 //   selectedRoomIds: number[]
 //   total: number
 // }
-
-
 
 // export default function Confirmation() {
 //   const { state } = useLocation() as {
@@ -36,69 +36,52 @@
 //   } = state
 
 //   function handleConfirmBooking() {
-//   selectedRoomIds.forEach(roomId => {
-//     saveRoomBooking(roomId, checkIn, checkOut)
-//   })
+//     selectedRoomIds.forEach(roomId => {
+//       saveRoomBooking(roomId, checkIn, checkOut)
+//     })
 
-//   alert('Booking confirmed!')
-// }
-
-
+//     alert('Booking confirmed!')
+//   }
 
 //   return (
-//     // <div className="container">
-//     //   <h2>🎉 Booking Confirmed!</h2>
+//     <div className="confirmation-wrapper">
+//       <div className="confirmation-card">
+//         <h2 className="title">Booking Confirmation</h2>
+//         <p className="subtitle">Your reservation details are below</p>
 
-//     //   <p><strong>Hotel:</strong> {hotelName}</p>
-//     //   <p><strong>Location:</strong> {location}</p>
-//     //   <p><strong>Dates:</strong> {checkIn} → {checkOut}</p>
-//     //   <p><strong>Rooms:</strong> {selectedRoomIds.length}</p>
-//     //   <p><strong>Guests:</strong> {guests.adults} Adults</p>
+//         <div className="details">
+//           <p><strong>Hotel:</strong> {hotelName}</p>
+//           <p><strong>Location:</strong> {location}</p>
+//           <p><strong>Dates:</strong> {checkIn} → {checkOut}</p>
+//           <p><strong>Guests:</strong> {guests.adults} Adults</p>
+//         </div>
 
-//     //   <h3>Total Paid: ₹{total}</h3>
+//         <div className="rooms">
+//           {selectedRoomIds.map(id => (
+//             <span key={id} className="room-chip">
+//               Room {id}
+//             </span>
+//           ))}
+//         </div>
 
-//     //   <p>Your booking is confirmed. Have a great stay!</p>
-//     // </div>
+//         <div className="amount">
+//           Total Paid: <span>₹{total}</span>
+//         </div>
 
-//     <div className="confirmation-page">
-//   <h2>Booking Confirmed 🎉</h2>
-
-//   <p>Your rooms have been successfully booked.</p>
-//   <p><strong>Hotel:</strong> {hotelName}</p>
-// <p><strong>Location:</strong> {location}</p>
-// <p>
-//   <strong>Dates:</strong> {checkIn} → {checkOut}
-// </p>
-// <p>
-//   <strong>Guests:</strong> {guests.adults} Adults
-// </p>
-
-//   <div className="seat-confirmation">
-//     {selectedRoomIds.map(id => (
-//       <span key={id} className="seat-badge">
-//         Room {id}
-//       </span>
-//     ))}
-//   </div>
-
-//   <div className="final-price">
-//     Total Paid: <strong>₹{total}</strong>
-//   </div>
-
-
-//   <button
-//   className="confirm-booking-btn"
-//   onClick={handleConfirmBooking}
-// >
-//   Confirm Booking
-// </button>
-
-// </div>
-
+//         <button
+//           className="confirm-btn"
+//           onClick={handleConfirmBooking}
+//         >
+//           Confirm
+//         </button>
+//       </div>
+//     </div>
 //   )
 // }
 
-import { useLocation } from 'react-router-dom'
+
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import './Confirmation.css'
 import { saveRoomBooking } from '../utils/bookings'
 
@@ -121,6 +104,9 @@ export default function Confirmation() {
     state: ConfirmationState | null
   }
 
+  const navigate = useNavigate()
+  const [bookingDone, setBookingDone] = useState(false)
+
   if (!state) return <p>No booking found</p>
 
   const {
@@ -138,7 +124,36 @@ export default function Confirmation() {
       saveRoomBooking(roomId, checkIn, checkOut)
     })
 
-    alert('Booking confirmed!')
+      const booking = {
+  id: Date.now().toString(),
+  hotelName,
+  location,
+  checkIn,
+  checkOut,
+  guests,
+  rooms: selectedRoomIds,
+  total,
+  bookedAt: new Date().toISOString(),
+
+  status: 'CONFIRMED' as const, // 🔹 NEW
+}
+
+
+     const existing =
+    JSON.parse(sessionStorage.getItem('myBookings') || '[]')
+
+  sessionStorage.setItem(
+    'myBookings',
+    JSON.stringify([...existing, booking])
+  )
+
+    setBookingDone(true)
+
+    // Navigate to Rooms page after short delay
+    setTimeout(() => {
+      navigate('/my-bookings', {
+  })
+    }, 2000)
   }
 
   return (
@@ -167,10 +182,11 @@ export default function Confirmation() {
         </div>
 
         <button
-          className="confirm-btn"
+          className={`confirm-btn ${bookingDone ? 'done' : ''}`}
           onClick={handleConfirmBooking}
+          disabled={bookingDone}
         >
-          Confirm
+          {bookingDone ? 'Booking Done ✓' : 'Confirm'}
         </button>
       </div>
     </div>

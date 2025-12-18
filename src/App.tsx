@@ -4,6 +4,9 @@ import Booking from './pages/Booking'
 import Rooms from './pages/Rooms'
 import Pricing from './pages/Pricing'
 import Confirmation from './pages/Confirmation'
+import MyBookings from './pages/MyBookings'
+
+
 
 export default function App() {
   return (
@@ -19,6 +22,8 @@ export default function App() {
 
 <Route path="/pricing" element={<Pricing />} />
 <Route path="/confirmation" element={<Confirmation />} />
+
+<Route path="/my-bookings" element={<MyBookings />} />
 
 
       </Routes>

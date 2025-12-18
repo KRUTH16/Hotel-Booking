@@ -31,7 +31,7 @@
 }
 
 .room-card.disabled {
-  opacity: 0.5;
+  /* opacity: 2.5; */
   pointer-events: none;
   position: relative;
 }
@@ -41,9 +41,15 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background: #dc2626;
+  background: #dd3131;
   color: white;
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 4px;
+}
+
+.container h2{
+    color:whitesmoke;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

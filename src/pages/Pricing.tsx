@@ -1,114 +1,5 @@
 
 
-// import { useLocation, useNavigate } from 'react-router-dom'
-// import rooms from '../data/rooms'
-// import {
-//   calculateNights,
-//   hasWeekend,
-//   calculateGuestMultiplier,
-//   calculateTotalPrice,
-// } from '../utils/pricing'
-// import './Pricing.css'
-
-// type PricingState = {
-//   hotelName: string
-//   location: string
-//   checkIn: string
-//   checkOut: string
-//   guests: {
-//     adults: number
-//     childrenAges: number[]
-//     rooms: number
-//   }
-//   selectedRoomIds: number[]
-// }
-
-
-// export default function Pricing() {
-//   const navigate = useNavigate()
-//   const { state } = useLocation() as { state: PricingState | null }
-
-//   if (!state) return <p>No booking data</p>
-
-//   const {
-//     hotelName,
-//     location,     // ✅ NOW DEFINED
-//     checkIn,
-//     checkOut,
-//     guests,
-//     selectedRoomIds,
-//   } = state
-
-//   const selectedRooms = rooms.filter(r =>
-//     selectedRoomIds.includes(r.roomId)
-//   )
-
-//   const nights = calculateNights(checkIn, checkOut)
-//   const weekend = hasWeekend(checkIn, checkOut)
-//   const guestMultiplier = calculateGuestMultiplier(
-//     guests.adults,
-//     guests.childrenAges.length
-//   )
-
-//   const basePrice = selectedRooms[0]?.basePrice ?? 0
-
-//   const total = calculateTotalPrice({
-//     basePrice,
-//     nights,
-//     roomsCount: selectedRooms.length,
-//     hasWeekend: weekend,
-//     guestMultiplier,
-//   })
-
-//   return (
-//     <div className="pricing-page">
-//       <h2>Price Breakdown – {hotelName}</h2>
-
-//       <div className="pricing-card">
-//         <div className="price-row">
-//           <span>Room Price</span>
-//           <span>₹{basePrice}</span>
-//         </div>
-
-//         <div className="price-row">
-//           <span>Nights</span>
-//           <span>{nights}</span>
-//         </div>
-
-//         <div className="price-row">
-//           <span>Rooms</span>
-//           <span>{selectedRooms.length}</span>
-//         </div>
-
-//         <div className="price-row total">
-//           <span>Total Payable</span>
-//           <span>₹{total}</span>
-//         </div>
-
-//         <button
-//           type="button"  // 🔑 IMPORTANT
-//           className="confirm-btn"
-//           onClick={() =>
-//             navigate('/confirmation', {
-//               state: {
-//                 hotelName,
-//                 location,
-//                 checkIn,
-//                 checkOut,
-//                 guests,
-//                 selectedRoomIds,
-//                 total,
-//               },
-//             })
-//           }
-//         >
-//           Proceed to Confirmation
-//         </button>
-//       </div>
-//     </div>
-//   )
-// }
-
 import { useLocation, useNavigate } from 'react-router-dom'
 import rooms from '../data/rooms'
 import {
@@ -152,47 +43,76 @@ export default function Pricing() {
   const nights = calculateNights(checkIn, checkOut)
   const weekend = hasWeekend(checkIn, checkOut)
 
-  // ✅ Sum of selected room prices (per night)
-  const roomPriceTotal = selectedRooms.reduce(
-    (sum, room) => sum + room.basePrice,
+  /* ---------- ROOM-WISE CALC ---------- */
+  const roomRows = selectedRooms.map(room => {
+    const subtotal = room.basePrice * nights
+    return {
+      roomId: room.roomId,
+      type: room.name,
+      pricePerNight: room.basePrice,
+      nights,
+      subtotal,
+    }
+  })
+
+  const subtotal = roomRows.reduce(
+    (sum, r) => sum + r.subtotal,
     0
   )
 
-  // ✅ FINAL CORRECT TOTAL
-  let total = roomPriceTotal * nights
-
-  // Optional weekend surge
-  if (weekend) {
-    total *= 1.2
-  }
-
-  total = Math.round(total)
+  const weekendCharge = weekend ? Math.round(subtotal * 0.2) : 0
+  const total = subtotal + weekendCharge
 
   return (
     <div className="pricing-page">
       <h2>Price Breakdown – {hotelName}</h2>
 
       <div className="pricing-card">
-        <div className="price-row">
-          <span>Room Price</span>
-          <span>₹{roomPriceTotal}</span>
-        </div>
+        {/* ---------- TABLE ---------- */}
+        <table className="pricing-table">
+          <thead>
+            <tr>
+              <th>Room</th>
+              <th>Type</th>
+              <th>Price / Night</th>
+              <th>Nights</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
 
-        <div className="price-row">
-          <span>Nights</span>
-          <span>{nights}</span>
-        </div>
+          <tbody>
+            {roomRows.map(room => (
+              <tr key={room.roomId}>
+                <td>Room {room.roomId}</td>
+                <td>{room.type}</td>
+                <td>₹{room.pricePerNight}</td>
+                <td>{room.nights}</td>
+                <td>₹{room.subtotal}</td>
+              </tr>
+            ))}
+          </tbody>
 
-        <div className="price-row">
-          <span>Rooms</span>
-          <span>{selectedRooms.length}</span>
-        </div>
+          <tfoot>
+            <tr>
+              <td colSpan={4}>Subtotal</td>
+              <td>₹{subtotal}</td>
+            </tr>
 
-        <div className="price-row total">
-          <span>Total Payable</span>
-          <span>₹{total}</span>
-        </div>
+            {weekend && (
+              <tr>
+                <td colSpan={4}>Weekend Surge (20%)</td>
+                <td>₹{weekendCharge}</td>
+              </tr>
+            )}
 
+            <tr className="total-row">
+              <td colSpan={4}>Total Payable</td>
+              <td>₹{total}</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        {/* ---------- CTA ---------- */}
         <button
           type="button"
           className="confirm-btn"
@@ -216,4 +136,3 @@ export default function Pricing() {
     </div>
   )
 }
-

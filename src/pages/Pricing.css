@@ -1,10 +1,17 @@
 .pricing-page {
   max-width: 520px;
-  margin: 40px auto;
+  margin:auto;
+  
+}
+.pricing-page h2{
+    color:#d2a081ec;
+    margin-bottom: 20px;
+
 }
 
 .pricing-card {
   background: white;
+
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
@@ -39,4 +46,31 @@
 
 .confirm-btn:hover {
   background: #16a34a;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.pricing-table th,
+.pricing-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.pricing-table thead {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+.pricing-table tfoot td {
+  font-weight: 600;
+}
+
+.total-row td {
+  font-size: 18px;
+  font-weight: 700;
 }
