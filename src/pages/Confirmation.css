@@ -1,23 +1,78 @@
-.confirmation-page {
+.confirmation-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8fafc;
+}
+
+.confirmation-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   text-align: center;
-  margin-top: 60px;
 }
 
-.seat-confirmation {
-  margin: 20px 0;
+/* ---------- TEXT ---------- */
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
-.seat-badge {
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.details p {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+/* ---------- ROOMS ---------- */
+.rooms {
+  margin: 18px 0;
+}
+
+.room-chip {
   display: inline-block;
-  padding: 10px 14px;
-  margin: 6px;
+  padding: 6px 12px;
+  margin: 4px;
   background: #2563eb;
   color: white;
-  border-radius: 6px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 600;
 }
 
-.final-price {
-  font-size: 20px;
+/* ---------- PRICE ---------- */
+.amount {
   margin-top: 16px;
+  font-size: 18px;
+}
+
+.amount span {
+  font-weight: 700;
+}
+
+/* ---------- BUTTON ---------- */
+.confirm-btn {
+  margin-top: 22px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background: #16a34a;
 }

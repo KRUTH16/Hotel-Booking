@@ -1,42 +1,90 @@
-/* ================= CARD ================= */
+/* =========================
+   Base Room Card
+========================= */
 .room-card {
-  display: grid;
-  grid-template-columns: 160px 1fr auto;
+  display: flex;
   gap: 20px;
-  align-items: center;
-
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 18px 20px;
+  padding: 18px;
   margin-bottom: 16px;
-
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
   cursor: pointer;
   transition: all 0.25s ease;
+  position: relative;
 }
 
-.room-card:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-
-/* ================= STATES ================= */
-.room-card.disabled {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.room-card.selected {
+/* Hover (only if selectable) */
+.room-card:not(.booked):hover {
   border-color: #2563eb;
-  background: #f5f9ff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
 }
 
-/* ================= IMAGE ================= */
+/* =========================
+   Selected Room
+========================= */
+.room-card.selected {
+  border: 2px solid #2563eb;
+  background: #eff6ff;
+}
+
+/* Selected pill */
+/* .selected-pill {
+  margin-top: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+} */
+
+.selected-pill {
+  margin-top: 12px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* =========================
+   Booked Room (Disabled)
+========================= */
+.room-card.booked {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+/* Booked badge */
+.room-card.booked::after {
+  content: "Booked";
+  position: absolute;
+  bottom:16px;
+  right: 16px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+/* =========================
+   Room Image
+========================= */
 .room-image {
-  width: 160px;
-  height: 110px;
+  width: 140px;
+  height: 100px;
+  flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
+  background: #f3f4f6;
 }
 
 .room-image img {
@@ -45,11 +93,11 @@
   object-fit: cover;
 }
 
-/* ================= INFO ================= */
+/* =========================
+   Room Info (Middle)
+========================= */
 .room-info {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex: 1;
 }
 
 .room-header {
@@ -59,67 +107,46 @@
 }
 
 .room-code {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   color: #2563eb;
 }
 
 .room-name {
   font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-}
-
-.room-capacity {
-  font-size: 14px;
-  color: #6b7280;
-}
-
-/* ================= PRICE ================= */
-.room-price-box {
-  text-align: right;
-  min-width: 120px;
-}
-
-.price {
-  font-size: 20px;
   font-weight: 700;
   color: #111827;
 }
 
-.per-night {
-  font-size: 13px;
+.room-capacity {
+  margin-top: 6px;
+  font-size: 14px;
   color: #6b7280;
 }
 
-/* ================= SELECTED ================= */
-.selected-pill {
-  margin-top: 10px;
-  display: inline-block;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  color: white;
-  background: #2563eb;
-  border-radius: 20px;
-}
-
-.room-card.unavailable {
-  opacity: 0.45;
-  pointer-events: none;
-  background: #f5f5f5;
-}
-
+/* Availability message */
 .room-unavailable {
-  margin-top: 6px;
-  font-size: 13px;
-  color: #d32f2f;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #dc2626;
   font-weight: 600;
 }
 
+/* =========================
+   Price Box (Right)
+========================= */
+.room-price-box {
+  min-width: 140px;
+  text-align: right;
+}
 
+.room-price-box .price {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+}
 
-
-
-
-
+.room-price-box .per-night {
+  font-size: 13px;
+  color: #6b7280;
+}

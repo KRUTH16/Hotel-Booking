@@ -2,64 +2,26 @@
 
 import type { Room } from '../../types/room'
 import './RoomCard.css'
-import { isRoomAvailable } from '../../utils/dateUtils'
+import { getBookedDates } from '../../utils/bookings'
+import { isRoomBooked } from '../../utils/dateUtils'
+
+
 
 type Props = {
   room: Room
   selected: boolean
-  disabled: boolean
-  available?:boolean
+  booked:boolean
   checkIn: string
   checkOut: string
   onSelect: () => void
 }
 
-// export default function RoomCard({
-//   room,
-//   selected,
-//   disabled,
-//   onSelect,
-// }: Props) {
-//   return (
-//     <div
-//       className={`room-card ${selected ? 'selected' : ''} ${
-//         disabled ? 'disabled' : ''
-//       }`}
-//       onClick={!disabled ? onSelect : undefined}
-//     >
 
-//    {/* LEFT: IMAGE */}
-//       <div className="room-image">
-//         <img
-//           src={room.image || '/room-placeholder.jpg'}
-//           alt={room.name}
-//         />
-//       </div>
-
-//       {/* Seat / Room Number */}
-//       <div className="room-id">{room.id}</div>
-
-//       {/* Room Info */}
-//       <h3 className="room-name">{room.name}</h3>
-
-//       <p className="room-capacity">
-//         Capacity: {room.capacity} guests
-//       </p>
-
-//       <p className="room-price">
-//         ₹{room.basePrice} / night
-//       </p>
-
-//       {/* Selection indicator */}
-//       {selected && <div className="selected-tag">Selected</div>}
-//     </div>
-//   )
-// }
 
 export default function RoomCard({
   room,
   selected,
-  disabled,
+ 
 
   onSelect,
   checkIn,
@@ -67,22 +29,37 @@ export default function RoomCard({
 
 }: Props) {
 
-    const available = isRoomAvailable(
-    room.unavailableDates,
-    checkIn,
-    checkOut
-  )
+
+
+
+console.log(
+  'ROOM:', room.roomId,
+  'BOOKED DATES:', getBookedDates(room.roomId),
+  'CHECK:', checkIn, '→', checkOut
+)
+
+const booked = isRoomBooked(
+  room.roomId,
+ room.unavailableDates,
+  checkIn,
+  checkOut
+)
 
 
 
   return (
-    
+
+
     <div
-      className={`room-card ${selected ? 'selected' : ''} 
-        ${ disabled ? 'disabled' : '' }
-          ${!available ? 'unavailable' : ''}`}
-      onClick={!disabled ? onSelect : undefined}
-    >
+  className={`room-card
+    ${selected ? 'selected' : ''}
+    ${booked ? 'booked' : ''}
+  `}
+  onClick={!booked ? onSelect : undefined}
+>
+
+    
+    
 
       {/* LEFT: IMAGE */}
       <div className="room-image">
@@ -105,7 +82,7 @@ export default function RoomCard({
       
 
       {/* ✅ AVAILABILITY MESSAGE */}
-        {!available && (
+        {booked && (
           <p className="room-unavailable">
             Not available for selected dates
           </p>
@@ -122,6 +99,8 @@ export default function RoomCard({
           <div className="selected-pill">Selected</div>
         )}
       </div>
+
+  
     </div>
   )
 }

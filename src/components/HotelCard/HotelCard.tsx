@@ -48,8 +48,8 @@ export default function HotelCard({
 }: Props) {
   const nights = calculateNights(checkIn, checkOut)
 
-  const totalPrice =
-    hotel.price * nights * guests.rooms
+//   const totalPrice =
+//     hotel.price * nights * guests.rooms
 
     const navigate = useNavigate()
 
@@ -94,7 +94,7 @@ export default function HotelCard({
         <span className="per-night">per night</span>
 
         <div className="total">
-          Total: <strong>₹{totalPrice}</strong>
+          {/* Total: <strong>₹{totalPrice}</strong> */}
         </div>
 
     <button

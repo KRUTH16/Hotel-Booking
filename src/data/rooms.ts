@@ -24,7 +24,7 @@ const rooms: Room[] = [
   capacity: 2,
   basePrice: 3000,
   image: getRoomImage(1001),
-  unavailableDates: ['2025-12-20', '2025-12-21'],
+  unavailableDates: ['2025-12-18', '2025-12-19'],
 },
 {
   roomId: 1002,

@@ -5,7 +5,7 @@ export default function Home() {
     <main>
       <section className="hero">
         <div className="container">
-          <h1>Book Hotels and Homestays</h1>
+          <h1 className="Title">Book Hotels and Homestays</h1>
           <SearchBar />
         </div>
       </section>

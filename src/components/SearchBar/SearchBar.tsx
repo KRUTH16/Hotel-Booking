@@ -1,4 +1,7 @@
-import { useEffect, useState, useRef } from 'react'
+
+
+
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import GuestsPopup from './GuestsPopup'
 import { fetchCities, POPULAR_CITIES } from './cityService'
@@ -7,16 +10,16 @@ import './SearchBar.css'
 export default function SearchBar() {
   const navigate = useNavigate()
 
-  /* ---------------- CITY SEARCH ---------------- */
+  /* ---------------- CITY ---------------- */
   const [city, setCity] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showCityDropdown, setShowCityDropdown] = useState(false)
 
-  /* ---------------- DATE STATE ---------------- */
+  /* ---------------- DATES ---------------- */
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
 
-  /* ---------------- GUESTS STATE ---------------- */
+  /* ---------------- GUESTS ---------------- */
   const [showGuests, setShowGuests] = useState(false)
   const [guests, setGuests] = useState({
     rooms: 1,
@@ -24,10 +27,7 @@ export default function SearchBar() {
     childrenAges: [] as number[],
   })
 
-  const [activeField, setActiveField] = useState<
-    'city' | 'checkin' | 'checkout' | 'guests' | null
-  >(null)
-
+  /* ---------------- REFS ---------------- */
   const guestsRef = useRef<HTMLDivElement>(null)
   const cityRef = useRef<HTMLDivElement>(null)
 
@@ -35,8 +35,8 @@ export default function SearchBar() {
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (city.length >= 2) {
-        const results = await fetchCities(city)
-        setSuggestions(results)
+        const result = await fetchCities(city)
+        setSuggestions(result)
       } else {
         setSuggestions([])
       }
@@ -47,30 +47,20 @@ export default function SearchBar() {
 
   /* ---------------- OUTSIDE CLICK ---------------- */
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const handler = (e: MouseEvent) => {
       if (guestsRef.current && !guestsRef.current.contains(e.target as Node)) {
         setShowGuests(false)
       }
-
       if (cityRef.current && !cityRef.current.contains(e.target as Node)) {
         setShowCityDropdown(false)
       }
-
-      setActiveField(null)
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () =>
-      document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  /* ---------------- HANDLERS ---------------- */
-  const handleCitySelect = (selectedCity: string) => {
-    setCity(selectedCity)
-    setSuggestions([])
-    setShowCityDropdown(false)
-  }
-
+  /* ---------------- SEARCH ---------------- */
   const handleSearch = () => {
     if (!city || !checkIn || !checkOut) return
 
@@ -87,34 +77,39 @@ export default function SearchBar() {
   return (
     <div className="sb-container">
       {/* ================= CITY ================= */}
-      <div
-        className={`sb-field sb-field-large ${
-          activeField === 'city' ? 'sb-active' : ''
-        }`}
-        ref={cityRef}
-      >
+      {/* <h1 className="Title">Book Hotels and Homestays</h1> */}
+      <div className="sb-field sb-field-large" ref={cityRef}>
         <label className="sb-label">Where to</label>
+
         <input
           className="sb-input"
           value={city}
           placeholder="Area, Landmark or Property Name"
-          onFocus={() => {
-            setCity('')
-            setSuggestions([])
-            setActiveField('city')
-            setShowCityDropdown(true)
-          }}
           onChange={e => setCity(e.target.value)}
+
+          /* ✅ KEY FIX HERE */
+          onFocus={() => {
+            setCity('')                // reset input
+            setSuggestions([])         // reset suggestions
+            setShowCityDropdown(true)  // show all cities
+          }}
         />
 
         {showCityDropdown && (
           <div className="sb-dropdown">
+            {/* POPULAR CITIES */}
             {city.length === 0 && (
               <>
                 <div className="sb-dropdown-title">Popular Searches</div>
-                <ul>
+                <ul className="sb-city-list">
                   {POPULAR_CITIES.map(c => (
-                    <li key={c} onClick={() => handleCitySelect(c)}>
+                    <li
+                      key={c}
+                      onClick={() => {
+                        setCity(c)
+                        setShowCityDropdown(false)
+                      }}
+                    >
                       📍 {c}
                     </li>
                   ))}
@@ -122,10 +117,17 @@ export default function SearchBar() {
               </>
             )}
 
-            {city.length >= 2 && suggestions.length > 0 && (
+            {/* AUTOCOMPLETE RESULTS */}
+            {city.length >= 2 && (
               <ul>
                 {suggestions.map(c => (
-                  <li key={c} onClick={() => handleCitySelect(c)}>
+                  <li
+                    key={c}
+                    onClick={() => {
+                      setCity(c)
+                      setShowCityDropdown(false)
+                    }}
+                  >
                     📍 {c}
                   </li>
                 ))}
@@ -136,55 +138,46 @@ export default function SearchBar() {
       </div>
 
       {/* ================= CHECK-IN ================= */}
-      <div className={`sb-field ${activeField === 'checkin' ? 'sb-active' : ''}`}>
+      <div className="sb-field">
         <label className="sb-label">Check-in</label>
         <input
-          className="sb-input"
           type="date"
+          className="sb-input"
           value={checkIn}
           onChange={e => setCheckIn(e.target.value)}
-          onFocus={() => setActiveField('checkin')}
         />
       </div>
 
       {/* ================= CHECK-OUT ================= */}
-      <div className={`sb-field ${activeField === 'checkout' ? 'sb-active' : ''}`}>
+      <div className="sb-field">
         <label className="sb-label">Check-out</label>
         <input
-          className="sb-input"
           type="date"
+          className="sb-input"
           value={checkOut}
           onChange={e => setCheckOut(e.target.value)}
-          onFocus={() => setActiveField('checkout')}
         />
       </div>
 
-      {/* ================= GUESTS ================= */}
-      <div
-        className={`sb-field sb-guests ${
-          activeField === 'guests' ? 'sb-active' : ''
-        }`}
-        ref={guestsRef}
-      >
+      {/* ================= ROOMS & GUESTS ================= */}
+      <div className="sb-field sb-guests" ref={guestsRef}>
+        <label className="sb-label">Rooms & Guests</label>
+
         <div
-          className="sb-guests-trigger"
-          onClick={() => {
-            setActiveField('guests')
-            setShowGuests(prev => !prev)
-          }}
+          className="sb-input sb-guests-input"
+          onClick={() => setShowGuests(prev => !prev)}
         >
-          <label className="sb-label">Rooms & Guests</label>
-          <strong>
-            {guests.adults} Adult{guests.adults > 1 ? 's' : ''}
-            {guests.childrenAges.length > 0 &&
-              ` | ${guests.childrenAges.length} Child`}
-            {' | '}
-            {guests.rooms} Room{guests.rooms > 1 ? 's' : ''}
-          </strong>
+          {guests.adults} Adult{guests.adults > 1 ? 's' : ''}
+          {guests.childrenAges.length > 0 &&
+            ` | ${guests.childrenAges.length} Child`}
+          {' | '}
+          {guests.rooms} Room{guests.rooms > 1 ? 's' : ''}
         </div>
 
         {showGuests && (
-          <GuestsPopup guests={guests} setGuests={setGuests} />
+          <div className="sb-guests-popup">
+            <GuestsPopup guests={guests} setGuests={setGuests} />
+          </div>
         )}
       </div>
 
@@ -195,3 +188,4 @@ export default function SearchBar() {
     </div>
   )
 }
+

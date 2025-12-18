@@ -1,41 +1,122 @@
- * {
+/* ================= RESET ================= */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Inter, system-ui, sans-serif;
-  background: var(--bg-light);
-  color: var(--text-dark);
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --text-light: #59c27892;
+  --text-dark: #35371f;
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --primary: #2563eb;
 }
 
+/* ================= BODY BACKGROUND ================= */
+body {
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text-dark);
+  min-height: 100vh;
+
+  /* Dark overlay for readability */
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg")
+      no-repeat center center fixed;
+
+  background-size: cover;
+}
+
+/* ================= CONTAINER ================= */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 0 20px;
 }
 
-button {
-  border: none;
-  cursor: pointer;
-}
-
-input {
-  outline: none;
-  border: none;
-}
-
-
+/* ================= HERO SECTION ================= */
 .hero {
-  background: linear-gradient(135deg, #1c848d, #ffdc5e);
-  padding: 70px 0 120px;
+  padding: 80px 0 120px;
 }
+
+
 
 .hero h1 {
   text-align: center;
+  /* color: var(--text-light); */
   color: white;
-  font-size: 34px;
-  margin-bottom: 40px;
-} 
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 48px;
+  text-shadow: 0 4px 12px rgba(227, 27, 44, 0.4);
+}
 
+
+
+
+/* ================= SEARCH BAR GLASS EFFECT ================= */
+.search-bar,
+.search-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--glass-border);
+}
+
+/* ================= INPUTS ================= */
+input {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+input::placeholder {
+  color: #6b7280;
+}
+
+/* ================= BUTTONS ================= */
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* Primary CTA button (SEARCH) */
+.primary-btn,
+.search-btn {
+  background: var(--primary);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+.primary-btn:hover,
+.search-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ================= SCROLLBAR (OPTIONAL NICE TOUCH) ================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+}

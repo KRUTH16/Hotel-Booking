@@ -1,109 +1,57 @@
-/* ================= ROOT ================= */
 .sb-container {
-  background: linear-gradient(135deg, #f8fbff, #eef4ff);
-  padding: 26px;
-  border-radius: 20px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
-
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr auto;
-  gap: 20px;
-  align-items: center;
+  display: flex;
+  align-items: flex-end;
+  /* margin-top: 200px; */
+  gap: 16px;
+  padding: 24px;
+  background: #f3f8ff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
-/* ================= FIELD ================= */
 .sb-field {
-  border: 1.5px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 14px 16px;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  background: #ffffff;
+  min-width: 160px;
 }
 
 .sb-field-large {
-  grid-column: span 1;
+  min-width: 280px;
 }
 
-/* Active field */
-.sb-active {
-  border: 2px solid #2563eb;
-}
 
-/* ================= LABEL ================= */
 .sb-label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
   color: #6b7280;
+  margin-bottom: 6px;
 }
 
-/* ================= INPUT ================= */
+
 .sb-input {
-  font-size: 16px;
-  font-weight: 600;
-  width: 100%;
-  margin-top: 6px;
-  border: none;
+  height: 52px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1.5px solid #dbe2ef;
+  background: #fff;
+  font-size: 15px;
   outline: none;
-  background: transparent;
+}
+
+.sb-input:focus {
+  border-color: #2563eb;
+}
+
+
+.sb-guests-input {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
   color: #111827;
 }
 
-/* ================= TEXT ================= */
-.sb-field strong {
-  display: block;
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 6px;
-}
-
-.sb-field span {
-  font-size: 12px;
-  color: #6b7280;
-}
-
-/* ================= SEARCH BUTTON ================= */
-.sb-search-btn {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 14px 32px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-}
-
-.sb-search-btn:hover {
-  background: linear-gradient(135deg, #1d4ed8, #1e40af);
-}
-
-/* ================= CITY SUGGESTIONS ================= */
-.sb-suggestions {
-  position: absolute;
-  background: #ffffff;
-  list-style: none;
-  width: 100%;
-  margin-top: 10px;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.16);
-  z-index: 1000;
-  max-height: 280px;
-  overflow-y: auto;
-}
-
-.sb-suggestions li {
-  padding: 14px 16px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.sb-suggestions li:hover {
-  background: #f1f5ff;
-}
-
-/* ================= DROPDOWN ================= */
 .sb-dropdown {
   position: absolute;
   top: 110%;
@@ -141,97 +89,48 @@
   background: #f1f5ff;
 }
 
-/* ================= GUESTS ================= */
 .sb-guests {
   position: relative;
-  cursor: pointer;
 }
 
-/* ================= GUEST POPUP ================= */
 .sb-guests-popup {
   position: absolute;
-  top: 120%;
+  top: 78px;
   right: 0;
-  width: 520px;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.2);
-  padding: 28px;
-  z-index: 3000;
+  width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  z-index: 200;
 }
 
-/* ================= GUEST ROW ================= */
-.sb-guest-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 24px;
-}
 
-.sb-guest-row span {
-  display: block;
+.sb-search-btn {
+  height: 52px;
+  padding: 0 36px;
+  border-radius: 26px;
+  background: #2563eb;
+  color: #fff;
   font-size: 16px;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 10px;
-}
-
-/* ================= COUNTER ================= */
-.sb-counter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #ffffff;
-  border-radius: 999px;
-  padding: 10px 16px;
-  border: 1.5px solid #e5e7eb;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.sb-counter button {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: #eef2ff;
-  color: #2563eb;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.sb-counter button:hover:not(:disabled) {
-  background: #e0e7ff;
-}
-
-.sb-counter button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* ================= CHILD AGE ================= */
-.sb-child-age {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.sb-child-age select {
-  min-width: 120px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  border: 1.5px solid #d1d5db;
-  font-size: 15px;
   font-weight: 600;
-  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* ================= STICKY WRAPPER ================= */
-.sb-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #ffffff;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+.sb-search-btn:hover {
+  background: #1e40af;
+}
+
+
+@media (max-width: 900px) {
+  .sb-container {
+    flex-wrap: wrap;
+  }
+
+  .sb-guests-popup {
+    right: auto;
+    left: 0;
+  }
 }

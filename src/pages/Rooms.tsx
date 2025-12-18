@@ -11,7 +11,9 @@ import BookingSearchBar from '../components/SearchBar/BookingSearchBar'
 // import type { Hotel } from '../types/hotel'
 import '../components/SearchBar/SearchBar.css'
 import { useNavigate } from 'react-router-dom'
-import { isRoomAvailable } from '../utils/dateUtils'
+import { isRoomBooked } from '../utils/dateUtils'
+import { getBookedDates } from '../utils/bookings'
+
 import './Rooms.css'
 
 
@@ -85,37 +87,58 @@ const eligibleRooms: Room[] = rooms.filter(
 
         {eligibleRooms.map(room => {
 
-            const available = isRoomAvailable(
-  room.unavailableDates || [],
+
+
+const bookedDates = getBookedDates(room.roomId)
+
+const isBooked = isRoomBooked(
+    room.roomId,
+  [...(room.unavailableDates || []), ...bookedDates],
   checkIn,
   checkOut
 )
 
-          const selected = selectedRoomIds.includes(room.roomId)
-        //   const disabled =
-        //     !selected && selectedRoomIds.length >= guests.rooms
+const isSelected = selectedRoomIds.includes(room.roomId)
 
         
-  const disabled =
-    !available || (!selected && selectedRoomIds.length >= guests.rooms)
+
+
           return (
             <RoomCard
-              key={room.id}
+              key={room.roomId}
               room={room}
-              selected={selected}
-              disabled={disabled}
-              available={available}
+              selected={isSelected}
+              booked={isBooked}
                checkIn={checkIn}
   checkOut={checkOut}
-              onSelect={() => {
-                if(!disabled){
-                setSelectedRoomIds(prev =>
-                  selected
-                    ? prev.filter(id => id !== room.roomId)
-                    : [...prev, room.roomId]
-                )
-            }
-              }}
+            //   onSelect={() => {
+            //     if(isBooked) return
+            //     setSelectedRoomIds(prev =>
+            //       isSelected
+            //         ? prev.filter(id => id !== room.roomId)
+            //         : [...prev, room.roomId]
+            //     )
+            
+            //   }}
+            onSelect={() => {
+  if (isBooked) return
+
+  setSelectedRoomIds(prev => {
+    if (prev.includes(room.roomId)) {
+      // unselect
+      return prev.filter(id => id !== room.roomId)
+    }
+
+    if (prev.length >= guests.rooms) {
+      // ❌ limit reached → do nothing
+      return prev
+    }
+
+    // select
+    return [...prev, room.roomId]
+  })
+}}
+
             />
           )
         })}
