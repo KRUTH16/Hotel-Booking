@@ -13,8 +13,11 @@ export default function App() {
   return (
     <BrowserRouter>
  <Header />
+ 
+
       <Routes>
-        <Route path="/" element={<Home />} />
+        
+        <Route path="/Hotel-Booking" element={<Home />} />
          
         <Route path="/booking" element={<Booking />} />
   
@@ -30,6 +33,7 @@ export default function App() {
 
 
       </Routes>
+      
     </BrowserRouter>
   )
 }
