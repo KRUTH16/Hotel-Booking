@@ -1,56 +1,4 @@
-// import  type { Room } from '../../types/room'
-// import RoomCard from '../RoomCard/RoomCard'
-// import './BookingGrid.css'
 
-// type Props = {
-//   rooms: Room[]
-//   selectedRooms: string[]
-//   setSelectedRooms: React.Dispatch<React.SetStateAction<string[]>>
-
-//    checkIn: string
-//   checkOut: string
-// }
-
-// export default function BookingGrid({
-//   rooms,
-//   selectedRooms,
-//   setSelectedRooms,
-
-//    checkIn,
-//   checkOut
-
-// }: Props) {
-
-//   const toggle = (id: string) => {
-//     setSelectedRooms(prev =>
-//       prev.includes(id)
-//         ? prev.filter(x => x !== id)
-      
-//         ? [...prev, id]
-//         : prev
-//     )
-//   }
-
-//   return (
-//     <div className="booking-grid">
-//       {rooms.map(room => (
-//         <RoomCard
-//           key={room.id}
-//           room={room}
-//            checkIn={checkIn}
-//   checkOut={checkOut}
-//           selected={selectedRooms.includes(room.id)}
-//           disabled={
-//             !selectedRooms.includes(room.id) &&
-//             selectedRooms.length >= maxRooms
-//           }
-//            onSelect={() => toggle(room.id)}
-//         />
-//       ))}
-//     </div>
-
-//   )
-// }
 
 import type { Room } from '../../types/room'
 import RoomCard from '../RoomCard/RoomCard'
@@ -73,19 +21,6 @@ export default function BookingGrid({
   checkIn,
   checkOut,
 }: Props) {
-
-
-
-
-// const toggle = (roomId: number) => {
-//   setSelectedRooms(prev =>
-//     prev.includes(roomId)
-//       ? prev.filter(id => id !== roomId)
-//       : prev.length < maxRooms
-//       ? [...prev, roomId]
-//       : prev
-//   )
-// }
 
 
  const toggle = (roomId: number) => {

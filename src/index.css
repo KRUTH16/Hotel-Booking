@@ -30,17 +30,6 @@ body {
   min-height: 100vh;
 }
 
-/* body {
-  margin: 0;
-  font-family: Inter, system-ui, sans-serif;
-
-  background: linear-gradient(
-    135deg,
-    #0f766e,
-    #2563eb,
-    #9333ea
-  );
-} */
 
 h1 {
   font-size: 3.2em;

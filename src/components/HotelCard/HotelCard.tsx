@@ -9,18 +9,7 @@ type Guests = {
   rooms: number
 }
 
-// type Props = {
-//   hotel: {
-//     id: string
-//     hotelName: string
-//     rating: string
-//     image?: string
-//     price: number
-//   }
-//   guests: Guests
-//   checkIn: string
-//   checkOut: string
-// }
+
 
 
 
@@ -48,8 +37,6 @@ export default function HotelCard({
 }: Props) {
   const nights = calculateNights(checkIn, checkOut)
 
-//   const totalPrice =
-//     hotel.price * nights * guests.rooms
 
     const navigate = useNavigate()
 

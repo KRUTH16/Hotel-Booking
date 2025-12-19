@@ -6,9 +6,9 @@
 
   display: grid;
   grid-template-columns: 2.8fr 1.3fr 1.3fr 2fr auto;
-  gap: 16px;
+  gap: 10px;
 
-  padding: 16px 28px;
+  padding: 16px 10px 16px 80px;
   background: linear-gradient(90deg, #b82073, #1288cd);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
@@ -106,14 +106,187 @@
 }
 
 /* ================= GUESTS ================= */
-.guests {
+/* .guests {
   cursor: pointer;
 }
 
+
+.guests-trigger {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.guests-trigger label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #8a8a8a;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 .guests-trigger strong {
+  font-size: 15.5px;          
+  font-weight: 600;
+  color: #1f1f1f;
+  line-height: 1.3;
+} */
+
+/* ================= GUESTS FIELD ================= */
+.field.guests,
+.guests-field {
+  position: relative; /* anchor popup */
+}
+
+/* ================= TRIGGER ================= */
+.guests-trigger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.guests-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.guests-summary {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+/* ================= POPUP WRAPPER ================= */
+.guests-popup-wrapper {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 9999;
+
+  /* 🔑 This removes field-like layout behavior */
+  width: max-content;
+}
+
+/* ================= POPUP (FLOATING CARD) ================= */
+.guests-popup {
+  width: 260px;
+  background: #ffffff;
+
+  border-radius: 16px;
+  padding: 14px 16px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Dropdown arrow (like first screenshot) */
+.guests-popup::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 28px;
+
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  transform: rotate(45deg);
+
+  box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* ================= ROW GROUP ================= */
+.guest-row-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ================= ROW ================= */
+.guest-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guest-row span {
   font-size: 15px;
   font-weight: 600;
   color: #222;
+}
+
+/* ================= COUNTER ================= */
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter span {
+  width: 18px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.counter button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+
+  background: #f1f5f9;
+  color: #1f2937;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter button:hover {
+  background: #e2e8f0;
+}
+
+.counter button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ================= CHILD AGE ================= */
+.child-age-group {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.child-age {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.child-age span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+.child-age select {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.child-age select:focus {
+  border-color: #4d90fe;
 }
 
 /* ================= SEARCH BUTTON ================= */

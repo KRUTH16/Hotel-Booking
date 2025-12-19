@@ -5,16 +5,19 @@ import Rooms from './pages/Rooms'
 import Pricing from './pages/Pricing'
 import Confirmation from './pages/Confirmation'
 import MyBookings from './pages/MyBookings'
+import Header from './Header'
 
 
 
 export default function App() {
   return (
     <BrowserRouter>
+ <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+         
         <Route path="/booking" element={<Booking />} />
-     
+  
 
 <Route path="/rooms" element={<Rooms />} />
 

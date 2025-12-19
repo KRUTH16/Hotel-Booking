@@ -6,13 +6,13 @@ import { useState } from 'react'
 import rooms from '../data/rooms'
 import type { Room } from '../types/room'
 import RoomCard from '../components/RoomCard/RoomCard'
-// import PricingSummary from '../components/PricingSummary/PricingSummary'
 import BookingSearchBar from '../components/SearchBar/BookingSearchBar'
-// import type { Hotel } from '../types/hotel'
 import '../components/SearchBar/SearchBar.css'
 import { useNavigate } from 'react-router-dom'
 import { isRoomBooked } from '../utils/dateUtils'
 import { getBookedDates } from '../utils/bookings'
+
+
 
 import './Rooms.css'
 
@@ -140,6 +140,8 @@ const isSelected = selectedRoomIds.includes(room.roomId)
 }}
 
             />
+
+
           )
         })}
 
@@ -159,6 +161,7 @@ const isSelected = selectedRoomIds.includes(room.roomId)
         state: {
           hotelId,
           hotelName,
+          city:location,
           location,
           checkIn,
           checkOut,
@@ -180,3 +183,4 @@ const isSelected = selectedRoomIds.includes(room.roomId)
     </>
   )
 }
+

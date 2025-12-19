@@ -1,14 +1,30 @@
+
 import { useState } from 'react'
 
-export function useSearchLogic(initial?: any) {
+type Guests = {
+  adults: number
+  childrenAges: number[]
+  rooms: number
+}
+
+type SearchInitialState = {
+  city?: string
+  checkIn?: string
+  checkOut?: string
+  guests?: Guests
+}
+
+export function useSearchLogic(initial?: SearchInitialState) {
   const [city, setCity] = useState(initial?.city ?? '')
   const [checkIn, setCheckIn] = useState(initial?.checkIn ?? '')
   const [checkOut, setCheckOut] = useState(initial?.checkOut ?? '')
-  const [guests, setGuests] = useState(initial?.guests ?? {
-    adults: 2,
-    childrenAges: [],
-    rooms: 1,
-  })
+  const [guests, setGuests] = useState<Guests>(
+    initial?.guests ?? {
+      adults: 2,
+      childrenAges: [],
+      rooms: 1,
+    }
+  )
 
   return {
     city,

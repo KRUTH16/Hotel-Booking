@@ -1,0 +1,76 @@
+.recent-wrapper {
+  background: #f8fafc;
+  padding: 24px 20px;
+  border-radius: 20px;
+  margin-top: 60px;
+  
+}
+
+.recent-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+/* Horizontal scroll */
+.recent-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.recent-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.recent-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* Card */
+.recent-card {
+  min-width: 200px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recent-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.recent-city {
+  display: inline-block;
+  background: #fff1eb;
+  color: #ff5722;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.recent-dates {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px 0 6px;
+}
+
+.recent-guests {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.recent-arrow {
+  position: absolute;
+  right: 14px;
+  top: 18px;
+  font-size: 22px;
+  color: #ff5722;
+}

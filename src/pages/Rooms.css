@@ -53,3 +53,10 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.room-with-calendar {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}

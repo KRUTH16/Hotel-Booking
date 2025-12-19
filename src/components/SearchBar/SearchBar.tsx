@@ -61,18 +61,52 @@ export default function SearchBar() {
   }, [])
 
   /* ---------------- SEARCH ---------------- */
-  const handleSearch = () => {
-    if (!city || !checkIn || !checkOut) return
+//   const handleSearch = () => {
+//     if (!city || !checkIn || !checkOut) return
 
-    navigate('/booking', {
-      state: {
-        city,
-        checkIn,
-        checkOut,
-        guests,
-      },
-    })
+//     navigate('/booking', {
+//       state: {
+//         city,
+//         checkIn,
+//         checkOut,
+//         guests,
+//       },
+//     })
+//   }
+
+const handleSearch = () => {
+  if (!city || !checkIn || !checkOut) return
+
+  /* 🔹 ADD RECENT SEARCH (NEW) */
+  const guestsText = `${guests.adults} Guests in ${guests.rooms} Room`
+
+  const newSearch = {
+    city,
+    checkIn,
+    checkOut,
+    guestsText,
   }
+
+  const existing = JSON.parse(
+    sessionStorage.getItem('recentSearches') || '[]'
+  )
+
+  sessionStorage.setItem(
+    'recentSearches',
+    JSON.stringify([newSearch, ...existing].slice(0, 5))
+  )
+
+  /* 🔹 NAVIGATION (EXISTING) */
+  navigate('/booking', {
+    state: {
+      city,
+      checkIn,
+      checkOut,
+      guests,
+    },
+  })
+}
+
 
   return (
     <div className="sb-container">

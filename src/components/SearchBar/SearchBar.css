@@ -39,7 +39,7 @@
   font-size: 15px;
   outline: none;
 }
-
+/* 
 .sb-input:focus {
   border-color: #2563eb;
 }
@@ -51,7 +51,7 @@
   align-items: center;
   font-weight: 600;
   color: #111827;
-}
+} */
 
 .sb-dropdown {
   position: absolute;
@@ -90,7 +90,7 @@
   background: #f1f5ff;
 }
 
-.sb-guests {
+/* .sb-guests {
   position: relative;
 }
 
@@ -104,7 +104,7 @@
   padding: 18px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
   z-index: 200;
-}
+} */
 
 
 .sb-search-btn {
@@ -123,6 +123,81 @@
 .sb-search-btn:hover {
   background: #1e40af;
 }
+/* ================= GUESTS FIELD ================= */
+.sb-field.sb-guests {
+  position: relative; /* anchor popup */
+}
+
+/* ================= LABEL ================= */
+.sb-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a8a8a;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ================= INPUT ================= */
+.sb-input {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px 14px;
+
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #1f1f1f;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: box-shadow 0.2s ease;
+}
+
+.sb-input:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= GUESTS POPUP WRAPPER ================= */
+.sb-guests-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 9999;
+
+  /* 🔑 ensures it floats and does NOT stretch field */
+  width: max-content;
+}
+
+/* ================= POPUP CARD ================= */
+.sb-guests-popup .guests-popup {
+  width: 260px;
+  background: #ffffff;
+
+  border-radius: 16px;
+  padding: 14px 16px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  position: relative;
+}
+
+/* Dropdown arrow (matches first screenshot) */
+.sb-guests-popup .guests-popup::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 28px;
+
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  transform: rotate(45deg);
+
+  box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.04);
+}
+
+
 
 
 @media (max-width: 900px) {
